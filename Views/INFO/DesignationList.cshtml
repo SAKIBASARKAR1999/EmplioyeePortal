@@ -1,0 +1,62 @@
+﻿<div style="text-align:center">
+    <div align="center">
+        <h1 class="m-5" style="font-family:Georgia"><b>Employeeportal</b></h1>
+
+        <nav>
+            <ul class="dropdown">
+                <a class="dropbtn" asp-area="" asp-controller="Employee" asp-action="EmployeeInfoEntry"><i class="fas fa-user icon" style="font-size:30px;color:darkviolet"></i><br />Employee Data</a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="EmployeeInfoListUpdate"><i class="fa-solid fa-users" style="font-size:30px;color:darkviolet"></i><br />Employee Information</a>
+                </div>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <nav>
+            <ul class="dropdown">
+                <a class="dropbtn" asp-area="" asp-controller="INFO" asp-action="DesignationEntry">Designation</a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="INFO" asp-action="DesignationList">Designation Information</a>
+                </div>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="dropdown">
+                <a class="dropbtn" asp-area="" asp-controller="INFO" asp-action="DepartmentEntry">Department</a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="INFO" asp-action="DepartmentList">Department Information</a>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+
+
+
+@model List<Employeeportal.Models.designation>
+
+<p style="font-size:36px;text-align:center; font-family:'Times New Roman', serif;" class=" m-4">DESIGNATION INFO</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="text-align:center">DESIGNATION ID</th>
+            <th style="text-align:center">DESIGNATION NAME</th>
+            <th> </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td style="text-align:center">@x.designationID</td>
+                <td style="text-align:center">@x.designationNAME</td>
+                <td style="text-align:center"><a class="btn btn-primary" asp-controller="INFO" asp-action="EditDesignation" asp-route-id="@x.designationID">EDIT</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>

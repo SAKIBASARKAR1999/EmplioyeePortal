@@ -1,0 +1,34 @@
+﻿@model List<Employeeportal.Models.employee>
+
+<p style="font-size:36px;text-align:center; font-family:'Times New Roman', serif;" class=" m-4">DATA LIST</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="text-align:center">EMPLOYEE ID</th>
+            <th style="text-align:center">EMPLOYEE NAME</th>
+            <th style="text-align:center">DOB</th>
+            <th style="text-align:center">EMAIL</th>
+            <th style="text-align:center">ADDRESS</th>
+            <th style="text-align:center">DESIGNATION</th>
+            <th style="text-align:center">DEPARTMENT</th>
+            <th style="text-align:center"> </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td style="text-align:center">@x.employeeID</td>
+                <td style="text-align:center">@x.employeeNAME</td>
+                <td style="text-align:center">@x.dob</td>
+                <td style="text-align:center">@x.email</td>
+                <td style="text-align:center">@x.address</td>
+                <td style="text-align:center">@x.designationNAME</td>
+                <td style="text-align:center">@x.departmentNAME</td>
+                <td style="text-align:center"><a class="btn btn-primary" asp-controller="INFO" asp-action="EditEmployee" asp-route-id="@x.employeeID">EDIT</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,56 @@
+﻿@model Employeeportal.Models.employeeINFO
+
+<body style="background-color:lightpink">
+    @if (Model is null)
+    {
+        <p style="font-size:40px;text-align:center">No Information Was Found With This EmployeeID</p>
+    }
+    else
+    {
+        <table align="center" width="900" height="700">
+
+            <th colspan="2" style="font-size:30px;text-align:center;">
+                PERSONAL INFORMATIOM
+            </th>
+            <br />
+            <tr>
+                <td colspan="2" width="250" height="150" style="font-size:30px;text-align:center">@Model.Photo<br />PHOTO<br /></td>
+            </tr>
+
+            <tr>
+                <td> NAME : @Model.FirstNAME @Model.LastNAME </td>
+                <td> GENDER : @Model.Gender</td>
+            </tr>
+            <tr>
+                <td>MARITAL STATUS : @Model.MaritalStatus</td>
+                <td>NATIONALITY : @Model.Nationality</td>
+            </tr>
+            <tr>
+                <td> PHONE : @Model.Phone </td>
+                <td> ADDRESS : @Model.Address</td>
+            </tr>
+            <tr>
+                <td> DEPARTMENT : @Model.Department </td>
+                <td>EMPLOYEE ID : @Model.EmployeeID</td>
+            </tr>
+            <tr>
+                <td>EMPLOYEE TYPE : @Model.EmployeeType</td>
+                <td>SUPERVISOR : @Model.Supervisor</td>
+            </tr>
+
+            @* <td >DATE OF JOINING : @Model.DateOfJoining</td>
+        <td >SALARY RATE : @Model.SalaryRate</td>
+        <td >PAY FREQUENCY : @Model.PayFrequency</td>
+        <td > BENEFITS ELIGIBILITY : @Model.BenefitsEligibility</td>
+        <td > BANK NAME : @Model.BankNAME</td>
+        <td > ACCOUNT NUMBER : @Model.AccountNumber</td>
+        <td > ROUNTING NUMBER : @Model.RoutingNumber</td>
+        <td > CURRICULUM VITAE : @Model.CV</td>
+        <td > OFFER LETTER : @Model.OfferLetter</td>
+        <td > IDENTIFICATION DOCUMENTS : @Model.IdentificationDocuments</td>
+        <td > TAX DOCUMENTS : @Model.TaxDocuments</td> *@
+
+
+        </table>
+    }
+</body>

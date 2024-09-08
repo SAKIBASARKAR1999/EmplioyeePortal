@@ -1,0 +1,211 @@
+﻿<div style="text-align:center">
+    <div align="center">
+        <h1 class="m-5" style="font-family:Georgia"><b>Employeeportal</b></h1>
+
+        <h1 class="m-5" style="font-family:Georgia; color:blue"><b>HELLO</b></h1>
+
+        <nav>
+            <ul class="dropdown">
+                <a class="dropbtn" asp-area="" asp-controller="Employee" asp-action="EmployeeInfoEntry"><i class="fas fa-user icon" style="font-size:30px;color:darkviolet"></i><br />Employee Data</a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="EmployeeInfoListUpdate"><i class="fa-solid fa-users" style="font-size:30px;color:darkviolet"></i><br />Employee Information</a>
+                </div>
+            </ul>
+        </nav>
+
+        <h1>hello</h1>
+    </div>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <nav>
+            <ul class="dropdown">
+                <a class="dropbtn" asp-area="" asp-controller="INFO" asp-action="DesignationEntry">Designation</a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="INFO" asp-action="DesignationList">Designation Information</a>
+                </div>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="dropdown">
+                <a class="dropbtn" asp-area="" asp-controller="INFO" asp-action="DepartmentEntry">Department</a>
+                <div class="dropdown-content">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="INFO" asp-action="DepartmentList">Department Information</a>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+
+@model Employeeportal.Models.employeeINFO
+<body style="background-color: skyblue;">
+    <p style="font-size:36px;text-align:center; font-family:'Times New Roman', serif;" class=" m-4">EMPLOYEE DATA</p>
+
+    <form method="post">
+
+        <div style="background-color: lightskyblue;">
+            <h1 class="form-label;mt-3;mb-3" style="background-color: deepskyblue; text-align:center;font-size:50px">EMPLOYEE DATA ENTRY</h1>
+            <label class="form-label">FIRST NAME</label>
+            <input type="text" class="form-control" asp-for="FirstNAME" />
+            <label class="form-label">LAST NAME</label>
+            <input type="text" class="form-control" asp-for="LastNAME" />
+            <label class="form-label">DATE OF BIRTH</label>
+            <input type="date" class="form-control" asp-for="DOB" />
+            @* RADIO_BUTTON *@
+            <label class="form-label" asp-for="Gender">GENDER</label>
+            <p style="padding-left: 40px;">
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">MALE</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">FEMALE</label><br>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">OTHER</label><br>
+                <input type="radio" id="prefer_not_to_say" name="gender" value="prefer_not_to_say">
+                <label for="prefer_not_to_say">PREFER NOT TO SAY</label><br>
+            </p>
+            <label class="form-label" asp-for="MaritalStatus">MARITAL STATUS</label>
+            @* pre tag use for getting output as like as code
+            <pre>
+            <input type="radio" id="SINGLE" name="MaritalStatus" value="single"> <label for="single">SINGLE</label>
+            <input type="radio" id="MARRIED" name="MaritalStatus" value="married"> <label for="married">MARRIED</label>
+            </pre> *@
+            <p style="padding-left: 40px;">
+                <input type="radio" id="SINGLE" name="MaritalStatus" value="single"> <label for="single">SINGLE &nbsp;&nbsp;</label>
+                <input type="radio" id="MARRIED" name="MaritalStatus" value="married"> <label for="married">MARRIED</label>
+            </p>
+            <label class="form-label;mt-3;mb-3">NATIONALITY</label>
+            <input type="text" class="form-control" asp-for="Nationality" />
+            <label class="form-label" asp-for="Photo" action="/submit-photo" enctype="multipart/form-data">PHOTO</label><br />
+            <input type="file" id="photo" name="photo" accept="image/*" onchange="previewPhoto()"><br><br>
+
+            <div id="preview" style="display: none;">
+                <p>Photo Preview:</p>
+                <img id="photoPreview" src="#" alt="Photo Preview" style="max-width: 300px;">
+            </div><br>
+            <script>
+                function previewPhoto() {
+                    var preview = document.getElementById('photoPreview');
+                    var file = document.getElementById('photo').files[0];
+                    var reader = new FileReader();
+
+                    reader.onloadend = function () {
+                        preview.src = reader.result;
+                        document.getElementById('preview').style.display = 'block';
+                    }
+
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    } else {
+                        preview.src = "#";
+                        document.getElementById('preview').style.display = 'none';
+                    }
+                }
+            </script>
+        </div>
+        <br />
+        <br />
+        <div style="background-color: lightskyblue;">
+            <h1 class="form-label;mt-3;mb-3" style="background-color: deepskyblue; text-align:center">CONTRACT INFORMATION</h1>
+            <label class="form-label">EMAIL</label>
+            <input type="email" class="form-control" asp-for="Email" />
+            <label class="form-label">PHONE</label>
+            <input type="tel" class="form-control" asp-for="Phone" />
+            <label class="form-label">EMERGEMCY CONTACT</label>
+            <input type="tel" class="form-control" asp-for="EmergencyContact" />
+            <label class="form-label" asp-for="Address">ADDRESS</label><br />
+            @* <label for="street">Street Address:</label><br>
+            <textarea id="street" name="street" rows="4" cols="50"></textarea><br>
+            <label for="city">City:</label><br>
+            <input type="text" id="city" name="city"><br>
+            <label for="state">State:</label><br>
+            <input type="text" id="state" name="state"><br>
+            <label for="zip">ZIP Code:</label><br>
+            <input type="text" id="zip" name="zip"><br>
+            <label for="country">Country:</label><br>
+            <input type="text" id="country" name="country"><br> *@
+            <input type="text" class="form-control" asp-for="Address" />
+        </div>
+        <br />
+        <br />
+        <div style="background-color: lightskyblue;">
+            <h1 class="form-label;mt-3;mb-3" style="background-color: deepskyblue; text-align:center">JOB INFORMATION</h1>
+            <label class="form-label">DEPARTMENT</label>
+            <label>
+                <select id="department" asp-for="departmentID" asp-items="ViewBag.DepartmentSelectList">
+                </select>
+            </label>
+            <br />
+            <label class="form-label">POSITION</label>
+            <input type="text" class="form-control" asp-for="Position" />
+            <label class="form-label">DATE OF JOINING</label>
+            <input type="date" class="form-control" asp-for="DateOfJoining" />
+            <label class="form-label" asp-for="EmployeeType">EMPLOYEE TYPE</label>
+            <select>
+                <option value="FullTime">FULL TIME</option>
+                <option value="PartTime">PART TIME</option>
+                <option value="Contract">CONTRACT</option>
+            </select>
+            <br />
+            <label class="form-label">SUPERVISOR</label>
+            <input type="text" class="form-control" asp-for="Supervisor" />
+        </div>
+        <br />
+        <br />
+        <div style="background-color: lightskyblue;">
+            <h1 class="form-label;mt-3;mb-3" style="background-color: deepskyblue; text-align:center">COMPENSATION</h1>
+            <label class="form-label">SALARY RATE</label>
+            <input type="text" class="form-control" asp-for="SalaryRate" />
+            <label class="form-label" asp-for="PayFrequency">PAY FREQUENCY</label>
+            <select>
+                <option value="monthly">MONTHLY</option>
+                <option value="biweekly">BI-WEEKLY</option>
+                <option value="weekly">WEEKLY</option>
+            </select><br>
+            <label class="form-label">BENEFITS ELIGIBILITY</label>
+            <input type="text" class="form-control" asp-for="BenefitsEligibility" />
+        </div>
+        <br />
+        <br />
+        <div style="background-color: lightskyblue;">
+            <h1 class="form-label;mt-3;mb-3" style="background-color: deepskyblue; text-align:center">BANK INFORMATION</h1>
+            <label class="form-label">BANK NAME</label>
+            <input type="text" class="form-control" asp-for="BankNAME" />
+            <label class="form-label">ACCOUNT NUMBER</label>
+            <input type="text" class="form-control" asp-for="AccountNumber" />
+            <label class="form-label">ROUTING NUMBER</label>
+            <input type="text" class="form-control" asp-for="RoutingNumber" />
+        </div>
+        <br />
+        <br />
+        <div style="background-color: lightskyblue;">
+            <h1 class="form-label;mt-3;mb-3" style="background-color: deepskyblue; text-align:center">DOCUMENTION</h1>
+            <label class="form-label" asp-for=" CV" action="/upload" enctype="multipart/form-data">CURRICULUM VITAE</label><br />
+            <label for="document">Upload Curriculum Vitae:</label><br>
+            <input type="file" id="document" name="document" accept=".pdf,.doc,.docx,.txt"><br><br>
+            <label class="form-label" asp-for="OfferLetter" action="/submit-document" enctype="multipart/form-data">OFFER LETTER</label><br />
+            <label for="document">Upload Offer Letter Document:</label><br>
+            <input type="file" id="document" name="document" accept=".pdf,.doc,.docx,.txt"><br><br>
+            <label class="form-label" asp-for="IdentificationDocuments" action="/submit-document" enctype="multipart/form-data">IDENTIFICATION DOCUMENTS</label><br />
+            <label for="document">Upload Identification Document:</label><br>
+            <input type="file" id="document" name="document" accept=".pdf,.doc,.docx,.txt"><br><br>
+            <label class="form-label" asp-for="TaxDocuments" action="/submit-document" enctype="multipart/form-data">TAX DOCUMENTS</label><br />
+            <label for="document">Upload Tax Document:</label><br>
+            <input type="file" id="document" name="document" accept=".pdf,.doc,.docx,.txt"><br><br>
+        </div>
+        <br />
+        <br />
+        <div style="background-color: lightskyblue;">
+            <button style=" width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer" type="Submit" class="btn btn-primary">
+                SAVE
+            </button>
+        </div>
+
+    </form>
+</body>
+

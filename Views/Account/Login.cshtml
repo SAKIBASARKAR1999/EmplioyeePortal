@@ -1,0 +1,44 @@
+﻿@using Employeeportal.Models;
+
+@model LogIn
+
+@{
+    ViewData["Title"] = "LOG IN";
+}
+
+<div class="row d-flex align-items-center justify-content-center" style="height: 100vh;background-color:deeppink">
+    <div class="col-6 text-center card p-3" style="background-color:darkorchid">
+        <div class="col-12 text-center" style="background-color:mediumorchid">
+            <h2 class="text-center test-info" style="height:5vh;">EMPLOYEEPORTAL</h2>
+        </div>
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-1">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="mb-1">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-1 form-check">
+                <label class="form-check-label">
+                    <input asp-for="Remember" class="form-check-input" /> @Html.DisplayNameFor(a => a.Remember)
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <a asp-action="Register" class="text-decoration-none float-start mt-2">Don't have account?</a>
+                </div>
+                <div class="col-4">
+                    <input type="submit" value="Login" class="btn btn-primary btn-sm float-end" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
